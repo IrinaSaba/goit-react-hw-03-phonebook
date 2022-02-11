@@ -16,8 +16,8 @@ class App extends Component {
   };
 
   componentDidMount() {
-    if (localStorage.getItem("contacts")) {
-      const contacts = localStorage.getItem("contacts");
+    const contacts = localStorage.getItem("contacts");
+    if (contacts) {
       const parsedContacts = JSON.parse(contacts);
       this.setState({ contacts: parsedContacts });
     }
@@ -37,7 +37,7 @@ class App extends Component {
     ) {
       return alert(`${newContact.name} is already in contacts`);
     }
-    return this.setState((prev) => ({
+    this.setState((prev) => ({
       contacts: [...prev.contacts, newContact],
     }));
   };
